@@ -1,0 +1,20 @@
+
+% ******** Meta ******** %
+
+\documentclass{minimal}
+\usepackage{import}
+\import{./}{packages.tex}
+
+% ******** Body ******** %
+
+\begin{document}
+
+\import{./}{header.tex}
+
+\begin{tikzpicture}
+  \foreach \y in {0,2.1,...,24}
+    \foreach \x in {0,2.4,...,18}
+      \draw[step=1cm, gray] (\x,\y) rectangle (\x+2,\y+2);
+\end{tikzpicture}
+
+\end{document}  
