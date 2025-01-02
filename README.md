@@ -1,2 +1,2 @@
-# kanji_writing_sheets
-Writing templates for kanji practice.
+# Kanji Writing  Sheets
+This repo consists on template sheets for (mainly, but not exclusively) japanese writing practice.
