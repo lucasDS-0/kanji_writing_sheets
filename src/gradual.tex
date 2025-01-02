@@ -1,0 +1,44 @@
+
+% ******** Meta ******** %
+
+\documentclass{minimal}
+\usepackage{import}
+\import{../extra}{packages.tex}
+
+% ******** Body ******** %
+
+\begin{document}
+
+\import{../extra}{header.tex}
+
+\begin{tikzpicture}
+  \foreach \y in {0,7,...,21} { 
+    % Main square
+    \draw[gray] (0,\y+2) rectangle (4,\y+6);
+    \draw[dotted, gray] (2,\y+2) -- (2,\y+6);
+    \draw[dotted, gray] (0,\y+4) -- (4,\y+4);
+    % Large squares
+    \foreach \l in {4,6.5,...,18}
+      \draw[gray] (\l,\y+6) rectangle (\l+2.5,\y+3.5);
+    \foreach \l in {4,6.5,...,9} {
+      \draw[dotted, gray] (\l,\y+4.75) -- (\l+2.5,\y+4.75);  
+      \draw[dotted, gray] (\l+1.25,\y+3.5) -- (\l+1.25,\y+6);
+    }
+    % Medium squares
+    \foreach \m in {4,5.5,...,14}
+      \draw[gray] (\m,\y+3.5) rectangle (\m+1.+5,\y+2);
+    \foreach \m in {4,5.5,...,10} {
+      \draw[dotted, gray] (\m,\y+2.75) -- (\m+1.5,\y+2.75);  
+      \draw[dotted, gray] (\m+0.75,\y+2) -- (\m+0.75,\y+3.5);
+    }
+    % Small squares
+    \draw[step=1cm, gray] (0,\y+0) grid (19,\y+2);
+    \foreach \s in {0,...,3} {
+      \draw[dotted, gray] (\s,\y+1.5) -- (\s+1,\y+1.5);
+      \draw[dotted, gray] (\s+0.5,\y+1) -- (\s+0.5,\y+2);
+    }    
+    \draw[gray] (0,\y) rectangle (19,\y-0.7);
+  }
+\end{tikzpicture}
+
+\end{document}  
