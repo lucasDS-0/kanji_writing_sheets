@@ -4,26 +4,30 @@ FILES=("horizontal horizontal_empty
 	    vertical vertical_empty
 	    gradual gradual_empty")
 
-MAGENTA='\033[0;35m'
 NC='\033[0m'
-CYAN='\033[0;36m'  
+GFG_MBG='\033[0;37;1;45m'
+BFG_CBG='\033[0;30;1;46m'
+
+if [ ! -f build/ ]; then
+	rm -r build/
+fi
+
+mkdir build
 
 for file in $FILES; do
-	if [ -e /src/$file.tex ]; then
-		echo -e "$MAGENTA The file $file.tex doesn't exists.$NC"
-	else
-		latexmk -pdf -silent -output-directory=./build src/$file
-		# This
-		cd build/
-		# is
-		if [ -e $file.pdf ]; then
-			latexmk -c -silent $file.pdf
-			echo -e "$CYAN $file.pdf created successfully.$NC"
+	if [ -f src/$file.tex ]; then
+		pdflatex -interaction=batchmode -output-directory=build src/$file
+		rm build/$file.log build/$file.aux
+		if [ -f build/$file.pdf ]; then
+			echo -e "$BFG_CBG $file.pdf created successfully$NC"
 		else
-			echo -e "$MAGENTA The file $file.tex didn't create correctly.$NC"
+			echo -e "$GFG_MBG The file $file.pdf didn't create correctly$NC"
 		fi
-		# horrible
-		cd ..
+	else
+		echo -e "$GFG_MBG The file $file.tex doesn't exists$NC"
 	fi
 done
 
+if [ -z "$(ls -A 'build/')" ]; then
+	rm -r build/
+fi
