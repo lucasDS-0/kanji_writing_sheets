@@ -2,14 +2,24 @@
 % ******** Meta ******** %
 
 \documentclass{minimal}
-\usepackage{import}
-\import{../extra}{packages.tex}
+\usepackage[ paper=a4paper
+           , margin=0.5cm
+           ]{geometry}
+\usepackage{CJKutf8}
+
+% ******** Envs ******** %
+
+\usepackage{pxrubrica}
+\usepackage{tikz}
 
 % ******** Body ******** %
 
 \begin{document}
 
-\import{../extra}{header.tex}
+\begin{CJK}{UTF8}{min}\ruby[m]{課題}{ か| だい}\end{CJK}: \dotfill ~ 
+\begin{CJK}{UTF8}{min}\ruby[g]{内容}{ないよう}\end{CJK}: \dotfill ~~
+
+\hfill
 
 \begin{tikzpicture}
   \foreach \y in {0,7,...,21} { 
@@ -36,7 +46,8 @@
     \foreach \s in {0,...,3} {
       \draw[dotted, gray] (\s,\y+1.5) -- (\s+1,\y+1.5);
       \draw[dotted, gray] (\s+0.5,\y+1) -- (\s+0.5,\y+2);
-    }    
+    }
+    % Empty line
     \draw[gray] (0,\y) rectangle (19,\y-0.7);
   }
 \end{tikzpicture}
